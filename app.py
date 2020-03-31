@@ -11,14 +11,33 @@ city = ''
 
 @bot.callback_query_handler(func=lambda call: True)     #обработчик клавиатуры
 def callback_worker(call):
-    if call.data == "Moscow": #call.data это callback_data, которую мы указали при объявлении кнопки
+    if call.data == "moscow": #call.data это callback_data, которую мы указали при объявлении кнопки
         f = open('files/moscow.txt', 'r')   # здесь лежит файл со станциями Москвы
-        msg = bot.send_message(call.message.chat.id, 'Установлен город: Москва\nВведите слово для поиска:');
-    if call.data == "SaintP":
+        bot.send_message(call.message.chat.id, 'Установлен город: Москва')
+    if call.data == "saintp":
         f = open('files/saintp.txt', 'r')   # здесь лежит файл со станциями Питера
-        msg = bot.send_message(call.message.chat.id, 'Установлен город: Санкт-Петербург\nВведите слово для поиска:');
+        bot.send_message(call.message.chat.id, 'Установлен город: Санкт-Петербург')
+    if call.data == "kazan":
+        f = open('files/kazan.txt', 'r')   # здесь лежит файл со станциями Питера
+        bot.send_message(call.message.chat.id, 'Установлен город: Казань')
+    if call.data == "ekaterin":
+        f = open('files/ekaterin.txt', 'r')   # здесь лежит файл со станциями Питера
+        bot.send_message(call.message.chat.id, 'Установлен город: Екатеринбург')
+    if call.data == "nizhniy":
+        f = open('files/nizhniy.txt', 'r')   # здесь лежит файл со станциями Питера
+        bot.send_message(call.message.chat.id, 'Установлен город: Нижний Новгород')
+    if call.data == "volgograd":
+        f = open('files/volgograd.txt', 'r')   # здесь лежит файл со станциями Питера
+        bot.send_message(call.message.chat.id, 'Установлен город: Волгоград')
+    if call.data == "novosibirsk":
+        f = open('files/novosibirsk.txt', 'r')   # здесь лежит файл со станциями Питера
+        bot.send_message(call.message.chat.id, 'Установлен город: Новосибирск')
+    if call.data == "samara":
+        f = open('files/samara.txt', 'r')   # здесь лежит файл со станциями Питера
+        bot.send_message(call.message.chat.id, 'Установлен город: Самара')
     city == str(call.data)
     content = f.readlines()
+    msg = bot.send_message('Введите слово для поиска:')
     bot.register_next_step_handler(msg, echo_message);
     
 #if city == "Moscow":
@@ -31,8 +50,22 @@ def callback_worker(call):
 def echo_message(message):
   if message.text == '/start':
       keyboard = types.InlineKeyboardMarkup(row_width=4); #наша клавиатура
-      key_yes = types.InlineKeyboardButton(text='Москва', callback_data='Moscow'); #кнопка "Москва"
-      keyboard.add(key_yes); #добавляем кнопку в клавиатуру
+      key_msk = types.InlineKeyboardButton(text='Москва', callback_data='moscow'); #кнопка "Москва"
+      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      key_stp = types.InlineKeyboardButton(text='Санкт-Петербург', callback_data='saintp'); #кнопка "Санкт-Петербург"
+      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      key_kzn = types.InlineKeyboardButton(text='Казань', callback_data='kazan'); #кнопка "Казань"
+      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      key_ekb = types.InlineKeyboardButton(text='Екатеринбург', callback_data='ekaterin'); #кнопка "Екатеринбург"
+      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      key_niz = types.InlineKeyboardButton(text='Нижний Новгород', callback_data='nizhniy'); #кнопка "Нижний Новгород"
+      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      key_nsk = types.InlineKeyboardButton(text='Новосибирск', callback_data='novosibirsk'); #кнопка "Новосибирск"
+      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      key_vlg = types.InlineKeyboardButton(text='Волгоград', callback_data='volgograd'); #кнопка "Волгоград"
+      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      key_sam = types.InlineKeyboardButton(text='Самара', callback_data='samara'); #кнопка "Самара"
+      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
       bot.send_message(message.from_user.id, text='Выберите город:', reply_markup=keyboard)
   else:
     poisk=str(message.text)
