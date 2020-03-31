@@ -35,7 +35,7 @@ def start(message):
       keyboard.add(key_sam); #добавляем кнопку в клавиатуру
       bot.send_message(message.from_user.id, text='Выберите город:', reply_markup=keyboard)
 
-def echo_message(message)
+def echo_message(message):
     poisk=str(message.text)
     print(poisk)
     ans = ''
