@@ -11,21 +11,24 @@ content = f.readlines()
 @bot.message_handler(func=lambda message: True)
 
 def echo_message(message):
-  poisk=str(message.text)
-  print(poisk)
-  ans = ''
-  shablon = ''
-  for i in range(0,len(poisk)):
-    shablon = shablon+poisk[i]
-    shablon = shablon+'.'
-    shablon = shablon+'*'
-  for i in range(0,len(content)):
-    mat = re.search(shablon, content[i], re.I)
-    if mat:
-      ans=ans+'\n'+content[i][0:len(content[i])-1]
-  if ans=='':
-    ans='Запрос не содержится ни в одной из станций'
-  msg2 = bot.reply_to(message, ans.format(message.text))
-  print(ans)
+  if str(message)=='/start':
+    msg = bot.reply_to(message, 'Введите имя/слово для поиска:'.format(message.text))
+  else:
+    poisk=str(message.text)
+    print(poisk)
+    ans = ''
+    shablon = ''
+    for i in range(0,len(poisk)):
+      shablon = shablon+poisk[i]
+      shablon = shablon+'.'
+      shablon = shablon+'*'
+    for i in range(0,len(content)):
+      mat = re.search(shablon, content[i], re.I)
+      if mat:
+        ans=ans+'\n'+content[i][0:len(content[i])-1]
+    if ans=='':
+      ans='Запрос не содержится ни в одной из станций'
+    msg2 = bot.reply_to(message, ans.format(message.text))
+    print(ans)
 
 bot.polling(none_stop=True)
