@@ -41,9 +41,9 @@ def callback_worker(call):
         f = open('files/samara.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Самара')
         msg = bot.send_message(call.message.chat.id, 'Введите слово для поиска:')
-city == str(call.data)
-content = f.readlines()
-bot.register_next_step_handler(msg, echo_message);
+    city == str(call.data)
+    content = f.readlines()
+    bot.register_next_step_handler(msg, echo_message);
     
     
 #if city == "Moscow":
@@ -53,7 +53,7 @@ bot.register_next_step_handler(msg, echo_message);
 
 @bot.message_handler(func=lambda message: True)
 
-def start(message):
+def echo_message(message):
   if message.text == '/start':
       keyboard = types.InlineKeyboardMarkup(row_width=4); #наша клавиатура
       key_msk = types.InlineKeyboardButton(text='Москва', callback_data='moscow'); #кнопка "Москва"
