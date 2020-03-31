@@ -27,6 +27,5 @@ def echo_message(message):
     ans='Запрос не содержится ни в одной из станций'
   msg2 = bot.reply_to(message, ans.format(message.text))
   print(ans)
-  bot.register_next_step_handler(msg2, echo_message)
 
 bot.polling(none_stop=True)
