@@ -67,7 +67,7 @@ def callback_worker(call):
 
 @bot.message_handler(func=lambda message: True)
 
-def echo_message(message):
+def start(message):
   if message.text == '/start':
       keyboard = types.InlineKeyboardMarkup(row_width=4); #наша клавиатура
       key_msk = types.InlineKeyboardButton(text='Москва', callback_data='moscow'); #кнопка "Москва"
