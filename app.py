@@ -4,7 +4,7 @@ import re
 API_TOKEN = '853778348:AAFSMMu5Lvz9_Jg1j9P7L-efBu3ay1RzPKs'
 bot = telebot.TeleBot(API_TOKEN)
 
-f = open('/files/listmsk.txt', 'r')   # здесь лежит файл со станциями:
+f = open('files/listmsk.txt', 'r')   # здесь лежит файл со станциями:
 content = f.readlines()
 
 @bot.message_handler(func=lambda message: True)
