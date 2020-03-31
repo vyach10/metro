@@ -14,30 +14,37 @@ def callback_worker(call):
     if call.data == "moscow": #call.data это callback_data, которую мы указали при объявлении кнопки
         f = open('files/moscow.txt', 'r')   # здесь лежит файл со станциями Москвы
         bot.send_message(call.message.chat.id, 'Установлен город: Москва')
+        msg = bot.send_message('Введите слово для поиска:')
     if call.data == "saintp":
         f = open('files/saintp.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Санкт-Петербург')
+        msg = bot.send_message('Введите слово для поиска:')
     if call.data == "kazan":
         f = open('files/kazan.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Казань')
+        msg = bot.send_message('Введите слово для поиска:')
     if call.data == "ekaterin":
         f = open('files/ekaterin.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Екатеринбург')
+        msg = bot.send_message('Введите слово для поиска:')
     if call.data == "nizhniy":
         f = open('files/nizhniy.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Нижний Новгород')
+        msg = bot.send_message('Введите слово для поиска:')
     if call.data == "volgograd":
         f = open('files/volgograd.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Волгоград')
+        msg = bot.send_message('Введите слово для поиска:')
     if call.data == "novosibirsk":
         f = open('files/novosibirsk.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Новосибирск')
+        msg = bot.send_message('Введите слово для поиска:')
     if call.data == "samara":
         f = open('files/samara.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Самара')
+        msg = bot.send_message('Введите слово для поиска:')
     city == str(call.data)
     content = f.readlines()
-    msg = bot.send_message('Введите слово для поиска:')
     bot.register_next_step_handler(msg, echo_message);
     
 #if city == "Moscow":
