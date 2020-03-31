@@ -13,7 +13,7 @@ def echo_message(message):
   if poisk=='start/':
   	bot.reply_to(message, 'Приветствую! Введите имя или слово для поиска.'.format(message.text))
   print(poisk)
-  elif:
+  else:
   	ans = 'Ваш запрос содержится в станциях:\n'
   	shablon = ''
   		for i in range(0,len(poisk)):
