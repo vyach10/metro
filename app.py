@@ -25,3 +25,4 @@ def echo_message(message):
     ans='Запрос не содержится ни в одной из станций :('
   bot.reply_to(message, ans.format(message.text))
   print(ans)
+bot.polling()
