@@ -36,6 +36,7 @@ def start(message):
       bot.send_message(message.from_user.id, text='Выберите город:', reply_markup=keyboard)
 
 def echo_message(message):
+    content = callback_worker(call):
     poisk=str(message.text)
     print(poisk)
     ans = ''
