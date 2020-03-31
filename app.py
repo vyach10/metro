@@ -5,14 +5,15 @@ import re
 API_TOKEN = '853778348:AAFSMMu5Lvz9_Jg1j9P7L-efBu3ay1RzPKs'
 bot = telebot.TeleBot(API_TOKEN)
 city = ''
+content = ''
 
 @bot.callback_query_handler(func=lambda call: True)     #обработчик клавиатуры
 def callback_worker(call):
     if call.data == "Moscow": #call.data это callback_data, которую мы указали при объявлении кнопки
         f = open('files/moscow.txt', 'r')   # здесь лежит файл со станциями:
+        content = f.readlines()
         city == str(call.data)
-        msg = bot.send_message(call.message.chat.id, 'Установлен город: Москва\nВведите слово для поиска:');
-    content = f.readlines()
+        msg = bot.send_message(call.message.chat.id, 'Установлен город: Москва\nВведите слово для поиска:');        
     bot.register_next_step_handler(msg, echo_message);
     
 #if city == "Moscow":
