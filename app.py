@@ -10,7 +10,7 @@ content = f.readlines()
 @bot.message_handler(func=lambda message: True)
 def echo_message(message):
   poisk=str(message.text)
-  if poisk=='start/':
+  if poisk=='start/ ':
       bot.reply_to(message, 'Приветствую! Введите имя или слово для поиска.'.format(message.text));
   else:
       ans = 'Ваш запрос содержится в станциях:\n'
