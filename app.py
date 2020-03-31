@@ -4,8 +4,9 @@ import re
 
 API_TOKEN = '853778348:AAFSMMu5Lvz9_Jg1j9P7L-efBu3ay1RzPKs'
 bot = telebot.TeleBot(API_TOKEN)
-city = ''
-content = ''
+
+f = open('files/moscow.txt', 'r')   # здесь лежит файл со станциями:
+content = f.readlines()
 
 @bot.callback_query_handler(func=lambda call: True)     #обработчик клавиатуры
 def callback_worker(call):
