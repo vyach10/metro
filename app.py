@@ -15,37 +15,52 @@ def callback_worker(call):
         f = open('files/moscow.txt', 'r')   # здесь лежит файл со станциями Москвы
         bot.send_message(call.message.chat.id, 'Установлен город: Москва')
         msg = bot.send_message(call.message.chat.id, 'Введите слово для поиска:')
+        content = f.readlines()
+        bot.register_next_step_handler(msg, echo_message);
     if call.data == "saintp":
         f = open('files/saintp.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Санкт-Петербург')
         msg = bot.send_message(call.message.chat.id, 'Введите слово для поиска:')
+        content = f.readlines()
+        bot.register_next_step_handler(msg, echo_message);
     if call.data == "kazan":
         f = open('files/kazan.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Казань')
         msg = bot.send_message(call.message.chat.id, 'Введите слово для поиска:')
+        content = f.readlines()
+        bot.register_next_step_handler(msg, echo_message);
     if call.data == "ekaterin":
         f = open('files/ekaterin.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Екатеринбург')
         msg = bot.send_message(call.message.chat.id, 'Введите слово для поиска:')
+        content = f.readlines()
+        bot.register_next_step_handler(msg, echo_message);
     if call.data == "nizhniy":
         f = open('files/nizhniy.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Нижний Новгород')
         msg = bot.send_message(call.message.chat.id, 'Введите слово для поиска:')
+        content = f.readlines()
+        bot.register_next_step_handler(msg, echo_message);
     if call.data == "volgograd":
         f = open('files/volgograd.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Волгоград')
         msg = bot.send_message(call.message.chat.id, 'Введите слово для поиска:')
+        content = f.readlines()
+        bot.register_next_step_handler(msg, echo_message);
     if call.data == "novosibirsk":
         f = open('files/novosibirsk.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Новосибирск')
         msg = bot.send_message(call.message.chat.id, 'Введите слово для поиска:')
+        content = f.readlines()
+        bot.register_next_step_handler(msg, echo_message);
     if call.data == "samara":
         f = open('files/samara.txt', 'r')   # здесь лежит файл со станциями Питера
         bot.send_message(call.message.chat.id, 'Установлен город: Самара')
         msg = bot.send_message(call.message.chat.id, 'Введите слово для поиска:')
+        content = f.readlines()
+        bot.register_next_step_handler(msg, echo_message);
     city == str(call.data)
-    content = f.readlines()
-    bot.register_next_step_handler(msg, echo_message);
+    
     
 #if city == "Moscow":
 #  print('Москва')
