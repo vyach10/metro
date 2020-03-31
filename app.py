@@ -26,5 +26,5 @@ def echo_message(message):
       if ans=='Ваш запрос содержится в станциях:\n':
           ans='Запрос не содержится ни в одной из станций :('
           bot.reply_to(message, ans.format(message.text));
-  print(ans)
+  print(poisk,'\n',ans)
 bot.polling()
