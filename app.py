@@ -77,6 +77,7 @@ def callback_worker(call):
     city == str(call.data)
     content = f.readlines()
     msg = bot.send_message(call.message.chat.id, 'Введите слово для поиска:')
+    return content
     bot.register_next_step_handler(msg, echo_message);
 
 bot.polling(none_stop=True)
