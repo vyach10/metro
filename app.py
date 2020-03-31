@@ -53,19 +53,19 @@ def echo_message(message):
       key_msk = types.InlineKeyboardButton(text='Москва', callback_data='moscow'); #кнопка "Москва"
       keyboard.add(key_msk); #добавляем кнопку в клавиатуру
       key_stp = types.InlineKeyboardButton(text='Санкт-Петербург', callback_data='saintp'); #кнопка "Санкт-Петербург"
-      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      keyboard.add(key_stp); #добавляем кнопку в клавиатуру
       key_kzn = types.InlineKeyboardButton(text='Казань', callback_data='kazan'); #кнопка "Казань"
-      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      keyboard.add(key_kzn); #добавляем кнопку в клавиатуру
       key_ekb = types.InlineKeyboardButton(text='Екатеринбург', callback_data='ekaterin'); #кнопка "Екатеринбург"
-      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      keyboard.add(key_ekb); #добавляем кнопку в клавиатуру
       key_niz = types.InlineKeyboardButton(text='Нижний Новгород', callback_data='nizhniy'); #кнопка "Нижний Новгород"
-      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      keyboard.add(key_niz); #добавляем кнопку в клавиатуру
       key_nsk = types.InlineKeyboardButton(text='Новосибирск', callback_data='novosibirsk'); #кнопка "Новосибирск"
-      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      keyboard.add(key_nsk); #добавляем кнопку в клавиатуру
       key_vlg = types.InlineKeyboardButton(text='Волгоград', callback_data='volgograd'); #кнопка "Волгоград"
-      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      keyboard.add(key_vlg); #добавляем кнопку в клавиатуру
       key_sam = types.InlineKeyboardButton(text='Самара', callback_data='samara'); #кнопка "Самара"
-      keyboard.add(key_msk); #добавляем кнопку в клавиатуру
+      keyboard.add(key_sam); #добавляем кнопку в клавиатуру
       bot.send_message(message.from_user.id, text='Выберите город:', reply_markup=keyboard)
   else:
     poisk=str(message.text)
