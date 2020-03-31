@@ -12,10 +12,13 @@ city = ''
 @bot.callback_query_handler(func=lambda call: True)     #обработчик клавиатуры
 def callback_worker(call):
     if call.data == "Moscow": #call.data это callback_data, которую мы указали при объявлении кнопки
-        f = open('files/moscow.txt', 'r')   # здесь лежит файл со станциями:
-        content = f.readlines()
-        city == str(call.data)
-        msg = bot.send_message(call.message.chat.id, 'Установлен город: Москва\nВведите слово для поиска:');        
+        f = open('files/moscow.txt', 'r')   # здесь лежит файл со станциями Москвы
+        msg = bot.send_message(call.message.chat.id, 'Установлен город: Москва\nВведите слово для поиска:');
+    if call.data == "SaintP":
+        f = open('files/saintp.txt', 'r')   # здесь лежит файл со станциями Питера
+        msg = bot.send_message(call.message.chat.id, 'Установлен город: Санкт-Петербург\nВведите слово для поиска:');
+    city == str(call.data)
+    content = f.readlines()
     bot.register_next_step_handler(msg, echo_message);
     
 #if city == "Moscow":
