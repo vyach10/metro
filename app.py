@@ -6,6 +6,8 @@ API_TOKEN = '853778348:AAFSMMu5Lvz9_Jg1j9P7L-efBu3ay1RzPKs'
 bot = telebot.TeleBot(API_TOKEN)
 
 place='moscow'
+f = open('files/'+place+'.txt', 'r')   # здесь лежит файл со станциями:
+dicti = f.readlines()
 
 @bot.message_handler(commands=['start'])          # команда /start
 def start(message):
@@ -24,7 +26,7 @@ def start(message):
     keyboard.add(key_kzn, key_sam, key_vlg);  # добавляем кнопку в клавиатуру
     bot.send_message(message.from_user.id, text='Выберите город:', reply_markup=keyboard)
 
-def poisk(dicti, word):
+def poisk(word):
     ans = ''
     shablon = ''
     for i in range(0, len(word)):
@@ -40,11 +42,9 @@ def poisk(dicti, word):
 @bot.message_handler(func=lambda message: True)      
 def city(message):
     print(str(message.text))
-    if len(str(message.text))>1:
-      f = open('files/'+place+'.txt', 'r')   # здесь лежит файл со станциями:
-      content = f.readlines()
+    if str(message.text).isalpha():
       req = str(message.text)
-      ans=poisk(content,req)
+      ans=poisk(req)
       print(ans)
       bot.reply_to(message, ans)
     else:
