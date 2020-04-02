@@ -39,6 +39,7 @@ def poisk(dicti, word):
 
 @bot.message_handler(func=lambda message: True)      
 def city(message):
+    print(str(message.text))
     if len(str(message.text))>1:
       f = open('files/'+place+'.txt', 'r')   # здесь лежит файл со станциями:
       content = f.readlines()
