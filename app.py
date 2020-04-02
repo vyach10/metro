@@ -5,7 +5,7 @@ import re
 API_TOKEN = '853778348:AAFSMMu5Lvz9_Jg1j9P7L-efBu3ay1RzPKs'
 bot = telebot.TeleBot(API_TOKEN)
 
-place=''
+place='moscow'
 
 @bot.message_handler(commands=['start'])          # команда /start
 def start(message):
