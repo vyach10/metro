@@ -6,8 +6,6 @@ API_TOKEN = '853778348:AAFSMMu5Lvz9_Jg1j9P7L-efBu3ay1RzPKs'
 bot = telebot.TeleBot(API_TOKEN)
 
 place=''
-f = open('files/'+place+'.txt', 'r')   # здесь лежит файл со станциями:
-dicti = f.readlines()
 
 @bot.message_handler(commands=['start'])          # команда /start
 def start(message):
@@ -27,6 +25,8 @@ def start(message):
     bot.send_message(message.from_user.id, text='Выберите город:', reply_markup=keyboard)
 
 def poisk(word):
+    f = open('files/'+place+'.txt', 'r')   # здесь лежит файл со станциями:
+    dicti = f.readlines()
     ans = ''
     shablon = ''
     for i in range(0, len(word)):
