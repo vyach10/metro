@@ -60,7 +60,7 @@ def callback_worker(call):
       bot.send_message(call.message.chat.id, 'Установлен город: Санкт-Петербург\nЧтобы сменить город, отправьте /start')
     if call.data=='novosibirsk':
       bot.send_message(call.message.chat.id, 'Установлен город: Новосибирск\nЧтобы сменить город, отправьте /start')
-    if call.data=='ekaterinburg':
+    if call.data=='ekaterin':
       bot.send_message(call.message.chat.id, 'Установлен город: Екатеринбург\nЧтобы сменить город, отправьте /start')
     if call.data=='nizhniy':
       bot.send_message(call.message.chat.id, 'Установлен город: Нижний Новгород\nЧтобы сменить город, отправьте /start')
