@@ -9,7 +9,8 @@ from random import randint
 API_TOKEN = os.environ['TOKEN']
 bot = telebot.TeleBot(API_TOKEN)
 #-------------------------------------------------------------
-connect = psycopg2.connect(os.environ['DATABASE_URL'])
+DB = os.environ['DATABASE_URL']
+connect = psycopg2.connect(DB)
 #-------------------------------------------------------------
 path = 'files/metronames.json'
 f=open(path, 'r')
