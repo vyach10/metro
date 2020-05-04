@@ -136,12 +136,12 @@ def callback_worker(call):
 def change_city(id, new_city):
   cursor = connect.cursor()
   connect.cursor()
-  a=cursor.execute("select city from city_bd where id=%s", (id,))
+  a=cursor.execute("select city from city_db where id=%s", (id,))
   print(a, '\n')
   if a:
-    cursor.execute("update city_bd set city = '%s' WHERE id = %s", (new_city,id))
+    cursor.execute("update city_db set city = '%s' WHERE id = %s", (new_city,id))
   else:
-    cursor.execute("insert into city_bd (id, city) values (%s, %s)", (id, new_city))
+    cursor.execute("insert into city_db (id, city) values (%s, %s)", (id, new_city))
   connect.commit()
   cursor.close()
 
