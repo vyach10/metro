@@ -135,14 +135,14 @@ def callback_worker(call):
 
 def change_city(id, new_city):
   cursor = connect.cursor()
-     connect.cursor()
-     print(cursor.execute('select city from city_bd where id=%s', (id)),'\n')
-     if cursor.execute('select city from city_bd where id=%s', (id)):
-        cursor.execute('UPDATE city_bd SET city = '%s' WHERE id = '%s'', (new_city,id));
-        connect.commit() # <- We MUST commit to reflect the inserted data
-     else
-        cursor.execute('INSERT INTO city_bd (id, city) VALUES (%s, %s)', (id, new_city)
-        connect.commit() # <- We MUST commit to reflect the inserted data
-     cursor.close()
+  connect.cursor()
+  print(cursor.execute('select city from city_bd where id=%s', (id)),'\n')
+  if cursor.execute('select city from city_bd where id=%s', (id)):
+    cursor.execute('UPDATE city_bd SET city = '%s' WHERE id = '%s'', (new_city,id));
+    connect.commit() # <- We MUST commit to reflect the inserted data
+  else
+    cursor.execute('INSERT INTO city_bd (id, city) VALUES (%s, %s)', (id, new_city)
+    connect.commit() # <- We MUST commit to reflect the inserted data
+  cursor.close()
 
 bot.polling()
