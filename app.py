@@ -138,7 +138,7 @@ def change_city(id, new_city):
   connect.cursor()
   print(cursor.execute('select city from city_bd where id=%s', (id)),'\n')
   if cursor.execute('select city from city_bd where id=%s', (id)):
-    cursor.execute('UPDATE city_bd SET city = '%s' WHERE id = "%s"', (new_city,id));
+    cursor.execute('UPDATE city_bd SET city = '%s' WHERE id = %s', (new_city,id));
     connect.commit()
   else
     cursor.execute('INSERT INTO city_bd (id, city) VALUES (%s, %s)', (id, new_city)
