@@ -120,7 +120,7 @@ def callback_worker(call):
       for k in data:
         if k['place'] == place:
           c = k['city']
-      change_city(message.chat.id, place)  # меняем город в БД
+      change_city(call.message.chat.id, place)  # меняем город в БД
       bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
       city(tmes2)
     if call.data == 'no':
