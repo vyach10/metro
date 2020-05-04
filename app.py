@@ -120,6 +120,7 @@ def callback_worker(call):
       for k in data:
         if k['place'] == place:
           c = k['city']
+      change_city(message.chat.id, place)  # меняем город в БД
       bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
       city(tmes2)
     if call.data == 'no':
@@ -129,6 +130,19 @@ def callback_worker(call):
     for k in data:
       if k['place'] == place:
         c = k['city']
+    change_city(message.chat.id, place)  # меняем город в БД
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c+'\nВведите запрос для поиска:')
+
+def change_city(id, new_city):
+  cursor = connect.cursor()
+     connect.cursor()
+     print(cursor.execute('select city from city_bd where id=%s', (id)),'\n')
+     if cursor.execute('select city from city_bd where id=%s', (id)):
+        cursor.execute('UPDATE city_bd SET city = '%s' WHERE id = '%s'', (new_city,id));
+        connect.commit() # <- We MUST commit to reflect the inserted data
+     else
+        cursor.execute('INSERT INTO city_bd (id, city) VALUES (%s, %s)', (id, new_city)
+        connect.commit() # <- We MUST commit to reflect the inserted data
+     cursor.close()
 
 bot.polling()
