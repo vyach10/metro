@@ -138,7 +138,7 @@ def change_city(id, new_city):
   connect.cursor()
   a=cursor.execute("select city from city_db where id=%s", (id,))
   print(id, ' "', a, '"\n')
-  if a!='None':
+  if a!=' None ':
     cursor.execute("update city_db set city = %s WHERE id = %s", (new_city,id))
   else:
     cursor.execute("insert into city_db (id, city) values (%s, %s)", (id, new_city))
