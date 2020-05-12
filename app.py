@@ -143,7 +143,6 @@ def change_city(id, new_city):
   else:
     cursor.execute("update city_db set city = %s WHERE id = %s", (new_city,id))
   connect.commit()
-  cursor.close()
   connect.close()
 
 bot.polling()
