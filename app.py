@@ -135,16 +135,14 @@ def callback_worker(call):
 
 def change_city(id, new_city):
   cursor = connect.cursor()
-  connect.autocommit = True
-  connect.cursor()
   a=cursor.execute("select city from city_db where id=%s", (id,))
   print('"',id,'","',a,'"')
-  if (a!='None') and (a!=' None '):
-    cursor.execute("update city_db set city = %s WHERE id = %s", (new_city,id))
-  else:
+  if (a=='None'):
     cursor.execute("insert into city_db (id, city) values (%s, %s)", (id, new_city))
-  connect.commit()
-  print(cursor.execute("select city from city_db where id=%s", (id,)))   # удалить после теста
+  else:
+    cursor.execute("update city_db set city = %s WHERE id = %s", (new_city,id))
   cursor.close()
+  connect.commit()
+  connect.close()
 
 bot.polling()
