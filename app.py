@@ -141,10 +141,11 @@ def change_city(id, new_city):
   print('"',id,'","',a,'"')
   if (a!='None') and (a!=' None '):
     cursor.execute("update city_db set city = %s WHERE id = %s", (new_city,id))
+    connect.commit()
   else:
     cursor.execute("insert into city_db (id, city) values (%s, %s)", (id, new_city))
+    connect.commit()
   print(cursor.execute("select city from city_db where id=%s", (id,)))   # удалить после теста
-  connect.commit()
   cursor.close()
 
 bot.polling()
