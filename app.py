@@ -135,6 +135,7 @@ def callback_worker(call):
 
 def change_city(id, new_city):
   cursor = connect.cursor()
+  connect.autocommit = True
   connect.cursor()
   a=cursor.execute("select city from city_db where id=%s", (id,))
   print('"',id,'","',a,'"')
