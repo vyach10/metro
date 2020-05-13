@@ -52,6 +52,12 @@ def start(message):
 #------------------------------------------------------------   
 
 def poisk(word, message):
+    cursor = connect.cursor()
+    connect.cursor()
+    b=cursor.execute("select city from city_db where id=%s", (id,))
+    records = cursor.fetchone()
+    cursor.close()
+    print(records)
     global temp
     global tmes
     global tmes2
@@ -75,7 +81,7 @@ def poisk(word, message):
         markup = types.InlineKeyboardMarkup(row_width=3);
         temp = newplace
         tmes2 = message
-        key_yes = types.InlineKeyboardButton(text='Да', callback_data='yes');
+        key_yes = types.InlineKeyboardButton(text='Да', callback_data='newplace');
         key_no = types.InlineKeyboardButton(text='Нет', callback_data='no');
         markup.add(key_yes, key_no);  # добавляем кнопки Да и Нет в клавиатуру
         message = bot.send_message(message.from_user.id, text='В городе '+c+' запрос не найден, но найден в городе '+city+'. Сменить город?', reply_markup=markup)
