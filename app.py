@@ -58,10 +58,12 @@ def poisk(word, message):
     b=cursor.execute("select city from city_db where id=%s", (id,))
     records = cursor.fetchone()
     cursor.close()
-    print(records[0])
-    global temp
-    global tmes
-    global tmes2
+    place=records[0]
+    #----------------------------------
+    for k in data:
+      if k['place'] == place:
+        c = k['city']
+    #----------------------------------
     ans = ''
     shablon = ''
     for i in range(0, len(word)):
@@ -80,8 +82,6 @@ def poisk(word, message):
           city = j['city']
       if ans != '':
         markup = types.InlineKeyboardMarkup(row_width=3);
-        temp = newplace
-        tmes2 = message
         key_yes = types.InlineKeyboardButton(text='Да', callback_data='newplace');
         key_no = types.InlineKeyboardButton(text='Нет', callback_data='no');
         markup.add(key_yes, key_no);  # добавляем кнопки Да и Нет в клавиатуру
