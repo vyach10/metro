@@ -99,6 +99,7 @@ def city(message):
   #  ===================АНАЛИТИКА===================#   
       else:
         id = message.chat.id
+        name = message.chat.username
         cursor = connect.cursor()
         connect.cursor()
         cursor.execute('INSERT INTO LOG (id, time, city, message) VALUES (%s, %s, %s, %s)', (id, dt.now(), place, str(message.text)))
@@ -139,7 +140,7 @@ def change_city(id, new_city):
   a=cursor.execute("select city from city_db where id=%s", (id,))
   records = cursor.fetchall()
   print('"',id,'","',records,'"')
-  if (a=='[]') or (a==' [] '):
+  if (records=='[]') or (records==' [] ') or records is None:
     cursor.execute('INSERT INTO CITY_DB (id, city) VALUES (%s, %s)', (id, new_city))
     connect.commit()
   else:
