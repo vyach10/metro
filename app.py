@@ -88,6 +88,7 @@ def poisk(word, message):
 
 @bot.message_handler(func=lambda message: True)      
 def city(message):
+    id = message.chat.id
     cursor = connect.cursor()
     connect.cursor()
     b=cursor.execute("select city from city_db where id=%s", (id,))
