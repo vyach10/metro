@@ -53,6 +53,7 @@ def poisk(word, message):
     records = cursor.fetchone()
     cursor.close()
     place=records[0]
+    print(place)
     #----------------------------------
     for k in data:
       if k['place'] == place:
