@@ -52,12 +52,13 @@ def start(message):
 #------------------------------------------------------------   
 
 def poisk(word, message):
+    id = message.chat.id
     cursor = connect.cursor()
     connect.cursor()
     b=cursor.execute("select city from city_db where id=%s", (id,))
     records = cursor.fetchone()
     cursor.close()
-    print(records)
+    print(records[0])
     global temp
     global tmes
     global tmes2
