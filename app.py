@@ -88,6 +88,13 @@ def poisk(word, message):
 
 @bot.message_handler(func=lambda message: True)      
 def city(message):
+    cursor = connect.cursor()
+    connect.cursor()
+    b=cursor.execute("select city from city_db where id=%s", (id,))
+    records = cursor.fetchone()
+    cursor.close()
+    place=records[0]
+    print(place)
     if str(message.text) == 'Сменить город':
       start(message)
     elif str(message.text) == 'Показать пример':
