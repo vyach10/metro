@@ -139,7 +139,7 @@ def change_city(id, new_city):
   a=cursor.execute("select city from city_db where id=%s", (id,))
   records = cursor.fetchall()
   print('"',id,'","',records,'"')
-  if (a=='None') or (a==' None '):
+  if (a=='[]') or (a==' [] '):
     cursor.execute('INSERT INTO CITY_DB (id, city) VALUES (%s, %s)', (id, new_city))
     connect.commit()
   else:
