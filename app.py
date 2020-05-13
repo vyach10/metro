@@ -137,8 +137,8 @@ def callback_worker(call):
 def change_city(id, new_city):
   cursor = connect.cursor()
   connect.cursor()
-  a=cursor.execute("select city from city_db where id=%s", (id,))
-  records = cursor.fetchall()
+  a=cursor.execute("select city from city_db where id=%s", (1,))
+  records = cursor.fetchone()
   print('"',id,'","',records,'"')
   if (records=='[]') or (records==' [] ') or records is None:
     cursor.execute('INSERT INTO CITY_DB (id, city) VALUES (%s, %s)', (id, new_city))
