@@ -139,10 +139,10 @@ def change_city(id, new_city):
   a=cursor.execute("select city from city_db where id=%s", (id,))
   print('"',id,'","',a,'"')
   if (a=='None'):
-    cursor.execute("insert into city_db (id, city) values (%s, %s); commit", (id, new_city))
+    cursor.execute('INSERT INTO city_db (id, city) VALUES (%s, %s)', (id, new_city))
   else:
-    cursor.execute("update city_db set city = %s WHERE id = %s; commit", (new_city,id))
+    cursor.execute('UPDATE city_db SET city = %s WHERE id = %s', (new_city,id))
   connect.commit()
-  connect.close()
+  cursor.close()
 
 bot.polling()
