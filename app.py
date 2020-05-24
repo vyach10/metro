@@ -37,10 +37,11 @@ def start(message):
     key_nsk = types.InlineKeyboardButton(text='Новосибирск', callback_data='novosibirsk');
     key_vlg = types.InlineKeyboardButton(text='Волгоград', callback_data='volgograd');
     key_sam = types.InlineKeyboardButton(text='Самара', callback_data='samara');
-    keyboard.add(key_msk);  # добавляем кнопку Москвы в клавиатуру
-    keyboard.add(key_stp);  # добавляем кнопку Питера в клавиатуру
+    keyboard.add(key_msk, key_stp);  # добавляем кнопку Москвы в клавиатуру
+    #keyboard.add();  # добавляем кнопку Питера в клавиатуру
     keyboard.add(key_nsk, key_ekb, key_niz);  # добавляем кнопки в клавиатуру
     keyboard.add(key_kzn, key_sam, key_vlg);  # добавляем кнопку в клавиатуру
+    keyboard.add(InlineKeyboardButton('Автор в Instagram', url='https://instagram.com/vy4c/'))
     bot.send_message(message.from_user.id, text='Хеш-тег #ИменаМетро', reply_markup=kb_start)
     bot.send_message(message.from_user.id, text='Выберите город:', reply_markup=keyboard)
 #------------------------------------------------------------   
