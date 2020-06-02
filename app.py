@@ -101,7 +101,6 @@ def city(message):
     records = cursor.fetchone()
     cursor.close()
     place=records[0]
-    place=place[1:3]
     print(place)
     if str(message.text) == 'Сменить город':
       start(message)
