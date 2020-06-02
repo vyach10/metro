@@ -43,10 +43,10 @@ def start(message):
     #keyboard.add();  # добавляем кнопку Питера в клавиатуру
     keyboard.add(key_nsk, key_ekb, key_niz);  # добавляем кнопки в клавиатуру
     keyboard.add(key_kzn, key_sam, key_vlg);  # добавляем кнопку в клавиатуру
-    if random.uniform(0,1)<0.1
+    if random.uniform(0,1)<0.1:
       key_inst = types.InlineKeyboardButton(text='Автор в Instagram', url='https://instagram.com/vy4c/')
       keyboard.add(key_inst)
-    if random.uniform(0,1)<0.2
+    if random.uniform(0,1)<0.2:
       bot.send_message(message.from_user.id, text='Хеш-тег #ИменаМетро', reply_markup=kb_start)
     bot.send_message(message.from_user.id, text='Выберите город:', reply_markup=keyboard)
 #------------------------------------------------------------   
