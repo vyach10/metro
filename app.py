@@ -29,21 +29,24 @@ def start(message):
     kb_start.add(btn_a,btn_pic)
 #------------------------------------------------------------
     keyboard = types.InlineKeyboardMarkup(row_width=3);
-    key_msk = types.InlineKeyboardButton(text='Москва', callback_data='moscow');
-    key_stp = types.InlineKeyboardButton(text='Санкт-Петербург', callback_data='saintp');
-    key_kzn = types.InlineKeyboardButton(text='Казань', callback_data='kazan');
-    key_ekb = types.InlineKeyboardButton(text='Екатеринбург', callback_data='ekaterin');
-    key_niz = types.InlineKeyboardButton(text='Нижний Новгород', callback_data='nizhniy');
-    key_nsk = types.InlineKeyboardButton(text='Новосибирск', callback_data='novosibirsk');
-    key_vlg = types.InlineKeyboardButton(text='Волгоград', callback_data='volgograd');
-    key_sam = types.InlineKeyboardButton(text='Самара', callback_data='samara');
-    key_inst = types.InlineKeyboardButton(text='Автор в Instagram', url='https://instagram.com/vy4c/')
+    key_msk = types.InlineKeyboardButton(text='Москва', callback_data='0msk');
+    key_stp = types.InlineKeyboardButton(text='Санкт-Петербург', callback_data='0stp');
+    key_kzn = types.InlineKeyboardButton(text='Казань', callback_data='0kzn');
+    key_ekb = types.InlineKeyboardButton(text='Екатеринбург', callback_data='0ekb');
+    key_niz = types.InlineKeyboardButton(text='Нижний Новгород', callback_data='0niz');
+    key_nsk = types.InlineKeyboardButton(text='Новосибирск', callback_data='0nsk');
+    key_vlg = types.InlineKeyboardButton(text='Волгоград', callback_data='0vlg');
+    key_sam = types.InlineKeyboardButton(text='Самара', callback_data='0sam');
+    
     keyboard.add(key_msk, key_stp);  # добавляем кнопку Москвы в клавиатуру
     #keyboard.add();  # добавляем кнопку Питера в клавиатуру
     keyboard.add(key_nsk, key_ekb, key_niz);  # добавляем кнопки в клавиатуру
     keyboard.add(key_kzn, key_sam, key_vlg);  # добавляем кнопку в клавиатуру
-    keyboard.add(key_inst)
-    bot.send_message(message.from_user.id, text='Хеш-тег #ИменаМетро', reply_markup=kb_start)
+    if random.uniform(0,1)<0.1
+      key_inst = types.InlineKeyboardButton(text='Автор в Instagram', url='https://instagram.com/vy4c/')
+      keyboard.add(key_inst)
+    if random.uniform(0,1)<0.2
+      bot.send_message(message.from_user.id, text='Хеш-тег #ИменаМетро', reply_markup=kb_start)
     bot.send_message(message.from_user.id, text='Выберите город:', reply_markup=keyboard)
 #------------------------------------------------------------   
 
@@ -79,8 +82,8 @@ def poisk(word, message):
           city = j['city']
       if ans != '':
         markup = types.InlineKeyboardMarkup(row_width=3);
-        key_yes = types.InlineKeyboardButton(text='Да', callback_data=newplace);
-        key_no = types.InlineKeyboardButton(text='Нет', callback_data='no');
+        key_yes = types.InlineKeyboardButton(text='Да', callback_data='y'+place+word);
+        key_no = types.InlineKeyboardButton(text='Нет', callback_data='n');
         markup.add(key_yes, key_no);  # добавляем кнопки Да и Нет в клавиатуру
         message = bot.send_message(message.from_user.id, text='В городе '+c+' запрос не найден, но найден в городе '+city+'. Сменить город?', reply_markup=markup)
         ans = 'False'
@@ -97,6 +100,7 @@ def city(message):
     records = cursor.fetchone()
     cursor.close()
     place=records[0]
+    place=place[1:3]
     print(place)
     if str(message.text) == 'Сменить город':
       start(message)
@@ -125,10 +129,18 @@ def city(message):
 
 @bot.callback_query_handler(func=lambda call: True)  # обработчик клавиатуры
 def callback_worker(call):
-  if call.data == 'no':
+  if call.data[0] == 'y':
+    place = call.data[1:3]
+    for k in data:
+      if k['place'] == place:
+        c = k['city']
+    change_city(call.message.chat.id, place)  # меняем город в БД
+    bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
+    city(call.data[4:])
+  if call.data[0] == 'n':
       bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
   else:    
-    place = call.data
+    place = call.data[1:3]
     for k in data:
       if k['place'] == place:
         c = k['city']
