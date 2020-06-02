@@ -83,7 +83,7 @@ def poisk(word, message):
           city = j['city']
       if ans != '':
         markup = types.InlineKeyboardMarkup(row_width=3);
-        key_yes = types.InlineKeyboardButton(text='Да', callback_data='y'+place+word);
+        key_yes = types.InlineKeyboardButton(text='Да', callback_data='y'+newplace+word);
         key_no = types.InlineKeyboardButton(text='Нет', callback_data='n');
         markup.add(key_yes, key_no);  # добавляем кнопки Да и Нет в клавиатуру
         message = bot.send_message(message.from_user.id, text='В городе '+c+' запрос не найден, но найден в городе '+city+'. Сменить город?', reply_markup=markup)
