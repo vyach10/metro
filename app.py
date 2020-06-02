@@ -4,6 +4,7 @@ import re
 import psycopg2
 from datetime import datetime as dt
 import json
+import random
 from random import randint
 import os
 #-------------------------------------------------------------
