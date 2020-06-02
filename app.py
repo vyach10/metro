@@ -132,6 +132,7 @@ def callback_worker(call):
   if call.data[0] == 'y':
     place = call.data[1:4]
     mes = call.data[5:]
+    print(mes)
     print(place)
     for k in data:
       if k['place'] == place:
