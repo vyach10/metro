@@ -130,7 +130,7 @@ def city(message):
 @bot.callback_query_handler(func=lambda call: True)  # обработчик клавиатуры
 def callback_worker(call):
   if call.data[0] == 'y':
-    place = call.data[1:3]
+    place = call.data[1:4]
     print(place)
     for k in data:
       if k['place'] == place:
@@ -141,7 +141,7 @@ def callback_worker(call):
   elif call.data[0] == 'n':
       bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
   else:    
-    place = call.data[1:3]
+    place = call.data[1:4]
     print(place)
     for k in data:
       if k['place'] == place:
