@@ -143,7 +143,9 @@ def callback_worker(call):
     mess = {'content_type': 'text', 'message_id': 0000, 'from_user': {'id': 000000000, 'is_bot': False, 'first_name': 'x', 'username': 'x', 'last_name': 'x', 'language_code': 'en'}, 'date': 0000000000, 'chat': {'type': 'private', 'last_name': 'x', 'first_name': 'x', 'username': 'x', 'id': 000000000, 'title': None, 'all_members_are_administrators': None, 'photo': None, 'description': None, 'invite_link': None, 'pinned_message': None, 'sticker_set_name': None, 'can_set_sticker_set': None}, 'forward_from_chat': None, 'forward_from_message_id': None, 'forward_from': None, 'forward_date': None, 'reply_to_message': None, 'edit_date': None, 'media_group_id': None, 'author_signature': None, 'text': '1', 'entities': None, 'caption_entities': None, 'audio': None, 'document': None, 'photo': None, 'sticker': None, 'video': None, 'video_note': None, 'voice': None, 'caption': None, 'contact': None, 'location': None, 'venue': None, 'animation': None, 'new_chat_member': None, 'new_chat_members': None, 'left_chat_member': None, 'new_chat_title': None, 'new_chat_photo': None, 'delete_chat_photo': None, 'group_chat_created': None, 'supergroup_chat_created': None, 'channel_chat_created': None, 'migrate_to_chat_id': None, 'migrate_from_chat_id': None, 'pinned_message': None, 'invoice': None, 'successful_payment': None, 'connected_website': None, 'json': {'message_id': 0000, 'from': {'id': 000000000, 'is_bot': False, 'first_name': 'x', 'x': 'x', 'language_code': 'en'}, 'chat': {'id': 000000000, 'first_name': 'x', 'username': 'x', 'type': 'private'}, 'date': 0000000000, 'text': '1'}}
     mess = json.load(mess)
     mess['text'] = mes
-    mess['from_user.id'] = call.message.chat.id
+    from_user = json.load(mess['from_user'])
+    from_user['id'] = call.message.chat.id
+    mess['from_user'] = json.dump(from_user, ensure_ascii=False, indent=4)
     mess = json.dump(mess, ensure_ascii=False, indent=4)
     #--------------делаем "сообщение"---------------
     poisk(mes, mess)
