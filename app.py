@@ -131,13 +131,14 @@ def city(message):
 def callback_worker(call):
   if call.data[0] == 'y':
     place = call.data[1:4]
+    mes = call.data[5:]
     print(place)
     for k in data:
       if k['place'] == place:
         c = k['city']
     change_city(call.message.chat.id, place)  # меняем город в БД
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
-    city(call.data[4:])
+    city(mes)
   elif call.data[0] == 'n':
       bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
   else:    
