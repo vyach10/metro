@@ -147,7 +147,7 @@ def callback_worker(call):
     #from_user = json.load(mess['from_user'])
     #from_user['id'] = call.message.chat.id
     #mess['from_user'] = json.dump(from_user, ensure_ascii=False, indent=4)
-    mess = json.dump(message, ensure_ascii=False, indent=4)
+    mess = json.dump(message)
     #--------------делаем "сообщение"---------------
     city(mess)
   elif call.data[0] == 'n':
