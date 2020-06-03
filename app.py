@@ -148,7 +148,7 @@ def callback_worker(call):
     mess['from_user'] = json.dump(from_user, ensure_ascii=False, indent=4)
     mess = json.dump(mess, ensure_ascii=False, indent=4)
     #--------------делаем "сообщение"---------------
-    poisk(mes, mess)
+    city(mess)
   elif call.data[0] == 'n':
       bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
   else:    
