@@ -83,7 +83,7 @@ def poisk(word, message):
           city = j['city']
       if ans != '':
         markup = types.InlineKeyboardMarkup(row_width=3);
-        key_yes = types.InlineKeyboardButton(text='Да', callback_data='y'+newplace+word);
+        key_yes = types.InlineKeyboardButton(text='Да', callback_data='y'+newplace+json.load(message));
         key_no = types.InlineKeyboardButton(text='Нет', callback_data='n');
         markup.add(key_yes, key_no);  # добавляем кнопки Да и Нет в клавиатуру
         message = bot.send_message(message.from_user.id, text='В городе '+c+' запрос не найден, но найден в городе '+city+'. Сменить город?', reply_markup=markup)
@@ -131,7 +131,8 @@ def city(message):
 def callback_worker(call):
   if call.data[0] == 'y':
     place = call.data[1:4]
-    mes = str(call.data[4:])
+    message = call.data[4:]
+    
     print(mes)
     print(place)
     for k in data:
@@ -140,13 +141,13 @@ def callback_worker(call):
     change_city(call.message.chat.id, place)  # меняем город в БД
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
     #--------------делаем "сообщение"---------------
-    mess = {'content_type': 'text', 'message_id': 0000, 'from_user': {'id': 000000000, 'is_bot': False, 'first_name': 'x', 'username': 'x', 'last_name': 'x', 'language_code': 'en'}, 'date': 0000000000, 'chat': {'type': 'private', 'last_name': 'x', 'first_name': 'x', 'username': 'x', 'id': 000000000, 'title': None, 'all_members_are_administrators': None, 'photo': None, 'description': None, 'invite_link': None, 'pinned_message': None, 'sticker_set_name': None, 'can_set_sticker_set': None}, 'forward_from_chat': None, 'forward_from_message_id': None, 'forward_from': None, 'forward_date': None, 'reply_to_message': None, 'edit_date': None, 'media_group_id': None, 'author_signature': None, 'text': '1', 'entities': None, 'caption_entities': None, 'audio': None, 'document': None, 'photo': None, 'sticker': None, 'video': None, 'video_note': None, 'voice': None, 'caption': None, 'contact': None, 'location': None, 'venue': None, 'animation': None, 'new_chat_member': None, 'new_chat_members': None, 'left_chat_member': None, 'new_chat_title': None, 'new_chat_photo': None, 'delete_chat_photo': None, 'group_chat_created': None, 'supergroup_chat_created': None, 'channel_chat_created': None, 'migrate_to_chat_id': None, 'migrate_from_chat_id': None, 'pinned_message': None, 'invoice': None, 'successful_payment': None, 'connected_website': None, 'json': {'message_id': 0000, 'from': {'id': 000000000, 'is_bot': False, 'first_name': 'x', 'x': 'x', 'language_code': 'en'}, 'chat': {'id': 000000000, 'first_name': 'x', 'username': 'x', 'type': 'private'}, 'date': 0000000000, 'text': '1'}}
-    mess = json.load(mess)
-    mess['text'] = mes
-    from_user = json.load(mess['from_user'])
-    from_user['id'] = call.message.chat.id
-    mess['from_user'] = json.dump(from_user, ensure_ascii=False, indent=4)
-    mess = json.dump(mess, ensure_ascii=False, indent=4)
+    #mess = {'content_type': 'text', 'message_id': 0000, 'from_user': {'id': 000000000, 'is_bot': False, 'first_name': 'x', 'username': 'x', 'last_name': 'x', 'language_code': 'en'}, 'date': 0000000000, 'chat': {'type': 'private', 'last_name': 'x', 'first_name': 'x', 'username': 'x', 'id': 000000000, 'title': None, 'all_members_are_administrators': None, 'photo': None, 'description': None, 'invite_link': None, 'pinned_message': None, 'sticker_set_name': None, 'can_set_sticker_set': None}, 'forward_from_chat': None, 'forward_from_message_id': None, 'forward_from': None, 'forward_date': None, 'reply_to_message': None, 'edit_date': None, 'media_group_id': None, 'author_signature': None, 'text': '1', 'entities': None, 'caption_entities': None, 'audio': None, 'document': None, 'photo': None, 'sticker': None, 'video': None, 'video_note': None, 'voice': None, 'caption': None, 'contact': None, 'location': None, 'venue': None, 'animation': None, 'new_chat_member': None, 'new_chat_members': None, 'left_chat_member': None, 'new_chat_title': None, 'new_chat_photo': None, 'delete_chat_photo': None, 'group_chat_created': None, 'supergroup_chat_created': None, 'channel_chat_created': None, 'migrate_to_chat_id': None, 'migrate_from_chat_id': None, 'pinned_message': None, 'invoice': None, 'successful_payment': None, 'connected_website': None, 'json': {'message_id': 0000, 'from': {'id': 000000000, 'is_bot': False, 'first_name': 'x', 'x': 'x', 'language_code': 'en'}, 'chat': {'id': 000000000, 'first_name': 'x', 'username': 'x', 'type': 'private'}, 'date': 0000000000, 'text': '1'}}
+    #mess = json.load(mess)
+    #mess['text'] = mes
+    #from_user = json.load(mess['from_user'])
+    #from_user['id'] = call.message.chat.id
+    #mess['from_user'] = json.dump(from_user, ensure_ascii=False, indent=4)
+    mess = json.dump(message, ensure_ascii=False, indent=4)
     #--------------делаем "сообщение"---------------
     city(mess)
   elif call.data[0] == 'n':
