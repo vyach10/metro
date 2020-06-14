@@ -170,8 +170,8 @@ def callback_worker(call):
     mes = records[0]
     print(mes)
     mes = mes.replace("\'", "\"")
-    #mes = json.loads(records[0])
-    mes = json.dumps(mes)
+    mes = json.loads(mes)
+    #mes = json.dumps(mes)
     city(mes)
 
   elif call.data == 'no':
