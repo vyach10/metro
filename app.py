@@ -5,6 +5,7 @@ import psycopg2
 from datetime import datetime as dt
 import json
 from random import randint
+import random
 import os
 #-------------------------------------------------------------
 API_TOKEN = os.environ['TOKEN']
