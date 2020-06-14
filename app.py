@@ -109,7 +109,7 @@ def city(message):
     #mes = json.loads(str(message))
     cursor = connect.cursor()
     connect.cursor()
-    cursor.execute('INSERT INTO message (id, message) VALUES (%s, cast(%s AS json))', (id, message))
+    cursor.execute('INSERT INTO message (id, message) VALUES (%s, cast(%s AS json))', (id, json.dumps(message)))
     connect.commit() # <- We MUST commit to reflect the inserted data
     cursor.close()
     #----------------  ЗАПИСАЛИ СООБЩЕНИЕ  ------------------
