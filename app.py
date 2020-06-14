@@ -7,7 +7,7 @@ import json
 from random import randint
 import random
 import os
-import jsonpickle
+import ast
 #-------------------------------------------------------------
 API_TOKEN = os.environ['TOKEN']
 bot = telebot.TeleBot(API_TOKEN)
@@ -167,9 +167,7 @@ def callback_worker(call):
         c = k['city']
     change_city(call.message.chat.id, place)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
-    mes = json.dumps(records[0])
-    print(records[0])
-    print(mes)
+    mes = ast.literal_eval(records)
     city(mes)
 
   elif call.data == 'no':
