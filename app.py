@@ -84,7 +84,7 @@ def poisk(word, message):
           city = j['city']
       if ans != '':
         markup = types.InlineKeyboardMarkup(row_width=3);
-        key_yes = types.InlineKeyboardButton(text='Да', callback_data=newplace);
+        key_yes = types.InlineKeyboardButton(text='Да', callback_data='1'+newplace);
         key_no = types.InlineKeyboardButton(text='Нет', callback_data='no');
         markup.add(key_yes, key_no);  # добавляем кнопки Да и Нет в клавиатуру
         message = bot.send_message(message.from_user.id, text='В городе '+c+' запрос не найден, но найден в городе '+city+'. Сменить город?', reply_markup=markup)
@@ -130,8 +130,16 @@ def city(message):
 
 @bot.callback_query_handler(func=lambda call: True)  # обработчик клавиатуры
 def callback_worker(call):
+  if call.data[0] == '1':
+    place = call.data[1:]
+    call.data = call.data[1:]
+    for k in data:
+      if k['place'] == place:
+        c = k['city']
+    change_city(call.message.chat.id, place)
+    city(call.message)
   if call.data == 'no':
-      bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
+    bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
   else:    
     place = call.data
     for k in data:
