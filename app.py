@@ -167,7 +167,7 @@ def callback_worker(call):
         c = k['city']
     change_city(call.message.chat.id, place)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
-    mes = ast.literal_eval(records)
+    mes = ast.literal_eval(str(records[0]))
     city(mes)
 
   elif call.data == 'no':
