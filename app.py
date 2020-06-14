@@ -106,7 +106,9 @@ def city(message):
     cursor.close()
     place=records[0]
     #---------------- ЗАПИСЫВАЕМ СООБЩЕНИЕ ------------------
-    #mes = json.loads(str(message))
+    mes = json.loads(str(message))
+    print(message)
+    print(mes)
     cursor = connect.cursor()
     connect.cursor()
     cursor.execute('INSERT INTO message (id, message) VALUES (%s, cast(%s AS json))', (id, json.dumps(message)))
