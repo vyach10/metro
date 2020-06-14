@@ -108,7 +108,7 @@ def city(message):
     place=records[0]
     
     #---------------- ЗАПИСЫВАЕМ СООБЩЕНИЕ ------------------
-    mes = json.dumps(str(message))
+    mes = json.dumps(str(message)[1:len(str(message)-1)])
     cursor = connect.cursor()
     connect.cursor()
     cursor.execute("select message from message where id=%s", (id,))
