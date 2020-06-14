@@ -109,6 +109,8 @@ def city(message):
     
     #---------------- ЗАПИСЫВАЕМ СООБЩЕНИЕ ------------------
     print(message)
+    mes = ast.literal_eval(str(message))
+    mes = json.dumps(mes)
     #mes = json.dumps(str(message))
     cursor = connect.cursor()
     connect.cursor()
@@ -116,10 +118,10 @@ def city(message):
     records = cursor.fetchone()
     print('"',id,'","',records,'"')
     if (records=='[]') or (records==' [] ') or records is None:
-      cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, str(message)))
+      cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, mes))
       connect.commit() # <- We MUST commit to reflect the inserted data
     else:
-      cursor.execute('UPDATE message SET message = %s WHERE id = %s', (str(message), id))
+      cursor.execute('UPDATE message SET message = %s WHERE id = %s', (mes, id))
       connect.commit() # <- We MUST commit to reflect the inserted data
     cursor.close()
     #----------------  ЗАПИСАЛИ СООБЩЕНИЕ  ------------------
