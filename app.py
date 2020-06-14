@@ -175,7 +175,8 @@ def callback_worker(call):
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
     
     dic = ast.literal_eval(str(records[0]))
-    mes = json.dumps(dic)
+    dump = json.dumps(dic)
+    mes = json.loads(str(dump))
 
     #loaded = json.loads()
     #mes = json.dumps(loaded)
