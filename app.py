@@ -167,10 +167,11 @@ def callback_worker(call):
         c = k['city']
     change_city(call.message.chat.id, place)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
-    
+    print(records)
     print(type(records))
-    #mes = str(records).replace("\'", "\"")
-    
+    mes = str(records).replace("\'", "\"")
+    print(mes)
+    print(type(mes))
     #mes = json.loads(mes)
     #mes = mes.replace("\'", "\"")
     mes = json.dumps(records)
