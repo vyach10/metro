@@ -107,16 +107,17 @@ def city(message):
     place=records[0]
     
     #---------------- ЗАПИСЫВАЕМ СООБЩЕНИЕ ------------------
+    mes = json.dumps(str(message))
     cursor = connect.cursor()
     connect.cursor()
     cursor.execute("select message from message where id=%s", (id,))
     records = cursor.fetchone()
     print('"',id,'","',records,'"')
     if (records=='[]') or (records==' [] ') or records is None:
-      cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, json.dumps(message)))
+      cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, mes))
       connect.commit() # <- We MUST commit to reflect the inserted data
     else:
-      cursor.execute('UPDATE message SET message = %s WHERE id = %s', (json.dumps(message), id))
+      cursor.execute('UPDATE message SET message = %s WHERE id = %s', (mes, id))
       connect.commit() # <- We MUST commit to reflect the inserted data
     cursor.close()
     #----------------  ЗАПИСАЛИ СООБЩЕНИЕ  ------------------
