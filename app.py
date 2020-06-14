@@ -172,7 +172,9 @@ def callback_worker(call):
     change_city(call.message.chat.id, place)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
 
-    city(records)
+    mes = ast.literal_eval(str(records))
+    a = json.dumps(mes)
+    city(a)
 
   elif call.data == 'no':
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
