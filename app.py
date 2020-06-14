@@ -132,15 +132,18 @@ def city(message):
 def callback_worker(call):
   if call.data[0] == '1':
     place = call.data[1:]
+    print(place)
     call.data = call.data[1:]
+    print(call.data)
     t = call.message
+    print(call.message)
     for k in data:
       if k['place'] == place:
         c = k['city']
     change_city(call.message.chat.id, place)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
     city(t)
-  if call.data == 'no':
+  elif call.data == 'no':
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
   else:    
     place = call.data
