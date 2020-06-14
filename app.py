@@ -174,7 +174,8 @@ def callback_worker(call):
     change_city(call.message.chat.id, place)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
     
-    print('records: ', type(records))
+    print(records[0])
+    print('records: ', type(records[0]))
     dic = ast.literal_eval(str(records[0]))
     print('dic: ', type(records))
     dump = json.dumps(dic)
