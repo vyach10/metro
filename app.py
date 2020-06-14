@@ -116,10 +116,10 @@ def city(message):
     records = cursor.fetchone()
     print('"',id,'","',records,'"')
     if (records=='[]') or (records==' [] ') or records is None:
-      cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, message))
+      cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, str(message)))
       connect.commit() # <- We MUST commit to reflect the inserted data
     else:
-      cursor.execute('UPDATE message SET message = %s WHERE id = %s', (message, id))
+      cursor.execute('UPDATE message SET message = %s WHERE id = %s', (str(message), id))
       connect.commit() # <- We MUST commit to reflect the inserted data
     cursor.close()
     #----------------  ЗАПИСАЛИ СООБЩЕНИЕ  ------------------
