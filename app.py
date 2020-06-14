@@ -34,7 +34,7 @@ def start(message):
     key_stp = types.InlineKeyboardButton(text='Санкт-Петербург', callback_data='stp');
     key_kzn = types.InlineKeyboardButton(text='Казань', callback_data='kzn');
     key_ekb = types.InlineKeyboardButton(text='Екатеринбург', callback_data='ekb');
-    key_niz = types.InlineKeyboardButton(text='Нижний Новгород', callback_data='niz');
+    key_niz = types.InlineKeyboardButton(text='Н. Новгород', callback_data='niz');
     key_nsk = types.InlineKeyboardButton(text='Новосибирск', callback_data='nsk');
     key_vlg = types.InlineKeyboardButton(text='Волгоград', callback_data='vlg');
     key_sam = types.InlineKeyboardButton(text='Самара', callback_data='sam');
@@ -50,6 +50,9 @@ def start(message):
 #------------------------------------------------------------   
 
 def poisk(word, message):
+    
+    print(message)
+
     id = message.chat.id
     cursor = connect.cursor()
     connect.cursor()
