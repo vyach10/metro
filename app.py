@@ -167,11 +167,10 @@ def callback_worker(call):
         c = k['city']
     change_city(call.message.chat.id, place)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
-    
+    mes = json.dumps(records[0])
     print(records[0])
-    print(json.dumps(records[0])
-
-    city(json.dumps(records[0])
+    print(mes)
+    city(mes)
 
   elif call.data == 'no':
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
