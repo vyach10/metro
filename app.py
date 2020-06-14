@@ -106,9 +106,10 @@ def city(message):
     cursor.close()
     place=records[0]
     #---------------- ЗАПИСЫВАЕМ СООБЩЕНИЕ ------------------
+    mes = jsonpickle.encode(message)
     cursor = connect.cursor()
     connect.cursor()
-    cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, jsonpickle.encode(message))
+    cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, mes))
     connect.commit() # <- We MUST commit to reflect the inserted data
     cursor.close()
     #----------------  ЗАПИСАЛИ СООБЩЕНИЕ  ------------------
