@@ -55,12 +55,13 @@ def poisk(word, message):
 
     id = message.chat.id
     cursor = connect.cursor()
-    connect.cursor()
-    b=cursor.execute("select city from city_db where id=%s", (id,))
-    records = cursor.fetchone()
-    cursor.close()
+        connect.cursor()
+        b=cursor.execute("select city from city_db where id=%s", (id,))
+        records = cursor.fetchone()
+        cursor.close()
     place=records[0]
     print(place)
+    
     #----------------------------------
     for k in data:
       if k['place'] == place:
@@ -103,6 +104,13 @@ def city(message):
     records = cursor.fetchone()
     cursor.close()
     place=records[0]
+    #---------------- ЗАПИСЫВАЕМ СООБЩЕНИЕ ------------------
+    cursor = connect.cursor()
+        connect.cursor()
+        cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, message))
+        connect.commit() # <- We MUST commit to reflect the inserted data
+        cursor.close()
+    #----------------  ЗАПИСАЛИ СООБЩЕНИЕ  ------------------
     print(place)
     if str(message.text) == 'Сменить город':
       start(message)
@@ -114,7 +122,7 @@ def city(message):
       ans=poisk(str(message.text), message)
       if ans == 'False':
         return();
-  #  ===================АНАЛИТИКА===================#   
+    #--------------------  АНАЛИТИКА  -----------------------   
       else:
         id = message.chat.id
         name = message.chat.username
@@ -123,7 +131,7 @@ def city(message):
         cursor.execute('INSERT INTO LOG (id, time, city, message) VALUES (%s, %s, %s, %s)', (id, dt.now(), place, str(message.text)))
         connect.commit() # <- We MUST commit to reflect the inserted data
         cursor.close()
-  #  ===================АНАЛИТИКА===================#  
+    #--------------------  АНАЛИТИКА  ----------------------- 
         bot.reply_to(message, ans)
     else:
       bot.reply_to(message, 'Запрос должен содержать текст и быть короче 15 символов')
@@ -131,21 +139,28 @@ def city(message):
 
 @bot.callback_query_handler(func=lambda call: True)  # обработчик клавиатуры
 def callback_worker(call):
+
   if call.data[0] == '1':
+    id = call.message.chat.id
+    #---------------- ЧИТАЕМ СООБЩЕНИЕ ------------------
+    cursor = connect.cursor()
+    connect.cursor()
+    b=cursor.execute("select message from message where id=%s", (id,))
+    records = cursor.fetchone()
+    cursor.close()
+    #---------------- ПРОЧИТАЛИ СООБЩЕНИЕ ------------------
     place = call.data[1:]
     print(place)
-    call.data = call.data[1:]
-    print(call.data)
-    t = call.message
-    print(call.message)
     for k in data:
       if k['place'] == place:
         c = k['city']
     change_city(call.message.chat.id, place)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
-    city(t)
+    city(records)
+
   elif call.data == 'no':
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
+  
   else:    
     place = call.data
     for k in data:
