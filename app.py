@@ -7,6 +7,7 @@ import json
 from random import randint
 import random
 import os
+import jsonpickle
 #-------------------------------------------------------------
 API_TOKEN = os.environ['TOKEN']
 bot = telebot.TeleBot(API_TOKEN)
@@ -107,7 +108,7 @@ def city(message):
     #---------------- ЗАПИСЫВАЕМ СООБЩЕНИЕ ------------------
     cursor = connect.cursor()
     connect.cursor()
-    cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, message))
+    cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, jsonpickle.encode(message))
     connect.commit() # <- We MUST commit to reflect the inserted data
     cursor.close()
     #----------------  ЗАПИСАЛИ СООБЩЕНИЕ  ------------------
