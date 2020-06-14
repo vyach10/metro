@@ -108,7 +108,8 @@ def city(message):
     place=records[0]
     
     #---------------- ЗАПИСЫВАЕМ СООБЩЕНИЕ ------------------
-    mes = json.dumps(str(message)[1:len(str(message))-1])
+    print(message)
+    mes = json.dumps(str(message))
     cursor = connect.cursor()
     connect.cursor()
     cursor.execute("select message from message where id=%s", (id,))
@@ -171,8 +172,7 @@ def callback_worker(call):
     change_city(call.message.chat.id, place)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
 
-    types.to_json(records)
-    city(mes)
+    city(records)
 
   elif call.data == 'no':
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
