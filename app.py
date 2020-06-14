@@ -137,6 +137,7 @@ def callback_worker(call):
       if k['place'] == place:
         c = k['city']
     change_city(call.message.chat.id, place)
+    bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
     city(call.message)
   if call.data == 'no':
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
