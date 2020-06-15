@@ -171,15 +171,21 @@ def callback_worker(call):
     change_city(call.message.chat.id, place)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Установлен город: '+c)
     
-    print(records[0])
-    print('records: ', type(records[0]))
+    #print(records[0])
+    #print('records: ', type(records[0]))
+
     dic = ast.literal_eval(str(records[0]))
-    print('dic: ', type(dic))
-    dump = json.dumps(dic)
-    print('dump: ', type(dump))
-    mes = json.loads(str(dump))
-    print('mes: ', type(mes))
-    print(mes)
+    
+    #print('dic: ', type(dic))
+    
+    mes = json.dumps(dic)
+    
+    #print('dump: ', type(dump))
+    #mes = json.loads(str(dump))
+    #print('mes: ', type(mes))
+    #print(mes)
+    #loaded = json.loads(tmes_str)
+    
     telemes = telebot.types.Message(from_user = mes.from_user, date = mes.date, chat = mes.chat, content_type = mes.content_type, options = None, json_string = mes.json)
     #'from_user', 'date', 'chat', 'content_type', 'options', and 'json_string'
     print('telemes: ', type(telemes))
