@@ -182,6 +182,7 @@ def callback_worker(call):
     print('dump: ', type(dump))
     mes = json.loads(str(dump))
     print('mes: ', type(mes))
+    print(mes)
     #loaded = json.loads()
     #mes = json.dumps(loaded)
 
