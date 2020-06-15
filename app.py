@@ -107,24 +107,7 @@ def city(message):
     cursor.close()
     place=records[0]
     
-    #---------------- ЗАПИСЫВАЕМ СООБЩЕНИЕ ------------------
-    print(message)
-    mes = ast.literal_eval(str(message))
-    mes = json.dumps(mes)
-    #mes = json.dumps(str(message))
-    cursor = connect.cursor()
-    connect.cursor()
-    cursor.execute("select message from message where id=%s", (id,))
-    records = cursor.fetchone()
-    print('"',id,'","',records,'"')
-    if (records=='[]') or (records==' [] ') or records is None:
-      cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, mes))
-      connect.commit() # <- We MUST commit to reflect the inserted data
-    else:
-      cursor.execute('UPDATE message SET message = %s WHERE id = %s', (mes, id))
-      connect.commit() # <- We MUST commit to reflect the inserted data
-    cursor.close()
-    #----------------  ЗАПИСАЛИ СООБЩЕНИЕ  ------------------
+    
     
     print(place)
     if str(message.text) == 'Сменить город':
@@ -137,7 +120,7 @@ def city(message):
       ans=poisk(str(message.text), message)
       if ans == 'False':
         return();
-    #--------------------  АНАЛИТИКА  -----------------------   
+      #--------------------  АНАЛИТИКА  -----------------------   
       else:
         id = message.chat.id
         name = message.chat.username
@@ -146,13 +129,29 @@ def city(message):
         cursor.execute('INSERT INTO LOG (id, time, city, message) VALUES (%s, %s, %s, %s)', (id, dt.now(), place, str(message.text)))
         connect.commit() # <- We MUST commit to reflect the inserted data
         cursor.close()
-    #--------------------  АНАЛИТИКА  ----------------------- 
+        #--------------------  АНАЛИТИКА  -----------------------
+        #---------------- ЗАПИСЫВАЕМ СООБЩЕНИЕ ------------------
+        mes = ast.literal_eval(str(message))
+        mes = json.dumps(mes)
+        #mes = json.dumps(str(message))
+        cursor = connect.cursor()
+        connect.cursor()
+        cursor.execute("select message from message where id=%s", (id,))
+        records = cursor.fetchone()
+        print('"',id,'","',records,'"')
+        if (records=='[]') or (records==' [] ') or records is None:
+          cursor.execute('INSERT INTO message (id, message) VALUES (%s, %s)', (id, mes))
+          connect.commit() # <- We MUST commit to reflect the inserted data
+        else:
+          cursor.execute('UPDATE message SET message = %s WHERE id = %s', (mes, id))
+          connect.commit() # <- We MUST commit to reflect the inserted data
+        cursor.close()
+      #----------------  ЗАПИСАЛИ СООБЩЕНИЕ  ------------------
+     
         bot.reply_to(message, ans)
     else:
       bot.reply_to(message, 'Запрос должен содержать текст и быть короче 15 символов')
       bot.send_message(message.chat.id, 'Введите запрос для поиска:')
-
-
 
 @bot.callback_query_handler(func=lambda call: True)  # обработчик клавиатуры
 def callback_worker(call):
