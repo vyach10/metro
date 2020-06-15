@@ -180,8 +180,9 @@ def callback_worker(call):
     mes = json.loads(str(dump))
     print('mes: ', type(mes))
     print(mes)
-
-    city(mes)
+    telemes = telebot.types.Message(mes)
+    print('telemes: ', type(telemes))
+    city(telemes)
 
   elif call.data == 'no':
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Введите запрос для поиска:');
