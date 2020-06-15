@@ -180,7 +180,8 @@ def callback_worker(call):
     mes = json.loads(str(dump))
     print('mes: ', type(mes))
     print(mes)
-    telemes = telebot.types.Message(mes)
+    telemes = telebot.types.Message('from_user' = mes.from_user, 'date' = mes.date, 'chat' = mes.chat, 'content_type'=mes.content_type, 'options' = None, 'json_string' = mes)
+    #'from_user', 'date', 'chat', 'content_type', 'options', and 'json_string'
     print('telemes: ', type(telemes))
     city(telemes)
 
