@@ -99,6 +99,7 @@ def poisk(word, message):
 
 @bot.message_handler(func=lambda message: True)      
 def city(message):
+    print(type(message))
     id = message.chat.id
     cursor = connect.cursor()
     connect.cursor()
@@ -106,9 +107,7 @@ def city(message):
     records = cursor.fetchone()
     cursor.close()
     place=records[0]
-    
-    
-    
+
     print(place)
     if str(message.text) == 'Сменить город':
       start(message)
@@ -133,7 +132,6 @@ def city(message):
         #---------------- ЗАПИСЫВАЕМ СООБЩЕНИЕ ------------------
         mes = ast.literal_eval(str(message))
         mes = json.dumps(mes)
-        #mes = json.dumps(str(message))
         cursor = connect.cursor()
         connect.cursor()
         cursor.execute("select message from message where id=%s", (id,))
@@ -182,11 +180,7 @@ def callback_worker(call):
     mes = json.loads(str(dump))
     print('mes: ', type(mes))
     print(mes)
-    #loaded = json.loads()
-    #mes = json.dumps(loaded)
 
-    #mes = ast.literal_eval(str(records))
-    #a = json.dumps(mes)
     city(mes)
 
   elif call.data == 'no':
