@@ -99,7 +99,6 @@ def poisk(word, message):
 
 @bot.message_handler(func=lambda message: True)      
 def city(message):
-    print(type(message))
     id = message.chat.id
     cursor = connect.cursor()
     connect.cursor()
@@ -185,7 +184,7 @@ def callback_worker(call):
     #print('mes: ', type(mes))
     #print(mes)
     #loaded = json.loads(tmes_str)
-    
+    telemes = call.message
     telemes = telebot.types.Message(from_user = mes.from_user, date = mes.date, chat = mes.chat, content_type = mes.content_type, options = None, json_string = mes.json)
     #'from_user', 'date', 'chat', 'content_type', 'options', and 'json_string'
     print('telemes: ', type(telemes))
